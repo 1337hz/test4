@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog	https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="002-circle-table-creation" author="h">
+        <createTable tableName="circle">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" nullable="false"
+                             foreignKeyName="FK_Circle_Shape_id"
+                             references="shape(id)"/>
+            </column>
+            <column name="radius" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
