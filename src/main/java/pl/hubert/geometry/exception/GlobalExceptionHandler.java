@@ -1,5 +1,6 @@
-package pl.hubert.geometry.common.exception;
+package pl.hubert.geometry.exception;
 
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -48,5 +49,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ExceptionDto handleNoResourceFoundException(MappingMismatchException ex) {
         return new ExceptionDto("Something went bad!");
+    }
+
+    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleInvalidDataAccess(InvalidDataAccessApiUsageException exception) {
+        return new ExceptionDto("Invalid parameter provided");
     }
 }

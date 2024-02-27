@@ -1,4 +1,4 @@
-package pl.hubert.geometry.common.exception;
+package pl.hubert.geometry.exception;
 
 public class TypeNotRecognizedException extends RuntimeException{
     public TypeNotRecognizedException(String type) {

@@ -100,8 +100,7 @@ public class ShapeControllerTest {
         shapeRepository.save(square);
 
         mockMvc.perform(get("/api/v1/shapes")
-                        .param("property", "radius")
-                        .param("value", "10.0"))
+                        .param("radius", "10"))
                 .andDo(print())
                 .andExpect(jsonPath("$.content").isArray())
                 .andExpect(jsonPath("$.content.length()").value(1))
@@ -125,11 +124,7 @@ public class ShapeControllerTest {
         shapeRepository.save(circle2);
         shapeRepository.save(square);
 
-        mockMvc.perform(get("/api/v1/shapes")
-                        .param("property", "radius")
-                        .param("value", "10.0")
-                        .param("operator", "gt"))
-                .andDo(print())
+        mockMvc.perform(get("/api/v1/shapes?radius>10"))
                 .andExpect(jsonPath("$.content").isArray())
                 .andExpect(jsonPath("$.content.length()").value(1))
                 .andExpect(jsonPath("$.content[0].type").value("circle"))
@@ -154,9 +149,7 @@ public class ShapeControllerTest {
 
         mockMvc.perform(get("/api/v1/shapes")
                         .param("type", "circle")
-                        .param("property", "radius")
-                        .param("value", "10.0"))
-                .andDo(print())
+                        .param("radius", "10"))
                 .andExpect(jsonPath("$.content").isArray())
                 .andExpect(jsonPath("$.content.length()").value(1))
                 .andExpect(jsonPath("$.content[0].type").value("circle"))
@@ -205,7 +198,6 @@ public class ShapeControllerTest {
         mockMvc.perform(get("/api/v1/shapes")
                         .param("type", "circle")
                         .param("radius", "incorrectRadius"))
-                .andDo(print())
                 .andExpect(jsonPath("$.content").isArray())
                 .andExpect(jsonPath("$.content.length()").value(2))
                 .andExpect(jsonPath("$.content[0].type").value("circle"))
@@ -259,7 +251,7 @@ public class ShapeControllerTest {
         mockMvc.perform(post("/api/v1/shapes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.type", is("circle")))
                 .andExpect(jsonPath("$.radius", is(10.0)));
 

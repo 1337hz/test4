@@ -10,8 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import pl.hubert.geometry.common.exception.PropertyRequiredException;
-import pl.hubert.geometry.common.exception.TypeNotRecognizedException;
+import pl.hubert.geometry.exception.PropertyRequiredException;
+import pl.hubert.geometry.exception.TypeNotRecognizedException;
 import pl.hubert.geometry.model.Circle;
 import pl.hubert.geometry.model.Shape;
 import pl.hubert.geometry.model.Square;
@@ -27,6 +27,7 @@ import pl.hubert.geometry.strategy.SquareMappingStrategy;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -139,7 +140,7 @@ public class ShapeServiceTest {
 
         when(shapeRepository.findAll(any(Specification.class), any(Pageable.class))).thenReturn(page);
 
-        Page<? extends ShapeDto> result = shapeService.findShapesByProperty(null,null, null, null, Pageable.unpaged());
+        Page<? extends ShapeDto> result = shapeService.findShapesByProperty(Pageable.unpaged(), new HashMap<>());
 
         List<? extends ShapeDto> resultContent = result.getContent();
 

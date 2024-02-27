@@ -1,9 +1,8 @@
 package pl.hubert.geometry.strategy;
 
 import org.springframework.stereotype.Component;
-import pl.hubert.geometry.common.exception.MappingMismatchException;
-import pl.hubert.geometry.common.exception.PropertyRequiredException;
-import pl.hubert.geometry.model.Circle;
+import pl.hubert.geometry.exception.MappingMismatchException;
+import pl.hubert.geometry.exception.PropertyRequiredException;
 import pl.hubert.geometry.model.Shape;
 import pl.hubert.geometry.model.command.CreateShapeCommand;
 import pl.hubert.geometry.model.Square;
@@ -29,5 +28,5 @@ public class SquareMappingStrategy implements ShapeMappingStrategy<SquareDto> {
             return new SquareDto(square.getId(), square.getType(), square.getSide());
         }
         throw new MappingMismatchException();
-    };
+    }
 }

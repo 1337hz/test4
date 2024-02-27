@@ -1,4 +1,4 @@
-package pl.hubert.geometry.common.exception;
+package pl.hubert.geometry.exception;
 
 import lombok.Getter;
 import lombok.Value;

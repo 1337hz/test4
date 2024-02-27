@@ -1,6 +1,6 @@
 package pl.hubert.geometry.strategy;
 
-import pl.hubert.geometry.common.exception.PropertyRequiredException;
+import pl.hubert.geometry.exception.PropertyRequiredException;
 import pl.hubert.geometry.model.Shape;
 import pl.hubert.geometry.model.command.CreateShapeCommand;
 import pl.hubert.geometry.model.dto.ShapeDto;

@@ -1,4 +1,4 @@
-package pl.hubert.geometry.common.exception;
+package pl.hubert.geometry.exception;
 
 public class MappingMismatchException  extends RuntimeException{
     public MappingMismatchException() {
